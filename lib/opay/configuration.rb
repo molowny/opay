@@ -11,7 +11,7 @@ module Opay
       config_accessor :pos_id
       config_accessor :pos_auth_key
       config_accessor :key1
-      config_accessor :key1
+      config_accessor :key2
 
       reset_config
     end
@@ -29,14 +29,14 @@ module Opay
 
           # payu configuration
           config.pos_id = 999
-          config.pos_auth_key = ''
-          config.key1 = ''
-          config.key1 = ''
+          config.pos_auth_key = 'pos_auth_key'
+          config.key1 = 'key1'
+          config.key2 = 'key2'
         end
       end
 
     end
-    
+
   end
 
 end
