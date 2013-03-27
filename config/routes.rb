@@ -1,3 +1,3 @@
 Opay::Engine.routes.draw do
-  root to: 'home#show'
+  root to: 'payu#online'
 end

@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Opay::VERSION
   s.authors     = ["Mariusz Ołownia"]
   s.email       = ["ollownia@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Opay."
-  s.description = "TODO: Description of Opay."
+  s.homepage    = "https://github.com/olownia/opay"
+  s.summary     = "Payu rails engine."
+  s.description = "Polish payment (payu) rails engine."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
@@ -19,10 +19,16 @@ Gem::Specification.new do |s|
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency 'sqlite3'
+
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'capybara'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'shoulda'
+
+  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'guard-spork'
+
+  s.add_development_dependency 'rb-fsevent'
 
   s.test_files = Dir["spec/**/*"]
 end
