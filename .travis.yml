@@ -7,3 +7,4 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
+
