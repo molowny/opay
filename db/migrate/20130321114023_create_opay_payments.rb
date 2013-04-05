@@ -2,7 +2,8 @@ class CreateOpayPayments < ActiveRecord::Migration
   def change
     create_table :opay_payments do |t|
       t.references :payable, polymorphic: true
-      t.string :session
+      t.string :session_id
+      t.string :provider
       t.float :amount
       t.boolean :finished
 
