@@ -1,3 +1,7 @@
 Opay::Engine.routes.draw do
-  root to: 'payu#online'
+
+  # payu
+  # scope :payu do
+  #   post '/online' => 'payu#online', as: online
+  # end
 end

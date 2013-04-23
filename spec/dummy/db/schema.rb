@@ -16,11 +16,12 @@ ActiveRecord::Schema.define(:version => 20130326152550) do
   create_table "opay_payments", :force => true do |t|
     t.integer  "payable_id"
     t.string   "payable_type"
-    t.string   "session"
+    t.string   "session_id"
+    t.string   "provider"
     t.float    "amount"
-    t.boolean  "finished"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.boolean  "finished",     :default => false, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "opay_payments", ["payable_id", "payable_type"], :name => "index_opay_payments_on_payable_id_and_payable_type"
@@ -28,13 +29,6 @@ ActiveRecord::Schema.define(:version => 20130326152550) do
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.string   "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "products", :force => true do |t|
-    t.string   "name"
-    t.integer  "price"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

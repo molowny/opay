@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Payu rails engine."
   s.description = "Polish payment (payu) rails engine."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency 'rails', '~> 3.2.13'
   # s.add_dependency "jquery-rails"
@@ -24,13 +24,20 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'
-  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'shoulda'
+  s.add_development_dependency 'webmock'
+
+  s.add_development_dependency 'database_cleaner'
+
+  s.add_development_dependency 'capybara'
 
   s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'rb-fsevent'
+
+  s.add_development_dependency 'spork'
   s.add_development_dependency 'guard-spork'
 
-  s.add_development_dependency 'rb-fsevent'
+  s.add_development_dependency 'terminal-notifier-guard' # OS X Notification Center
 
   s.test_files = Dir["spec/**/*"]
 end

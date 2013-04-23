@@ -1,5 +1,9 @@
 require 'rubygems'
 require 'spork'
+
+require 'erb'
+require 'ostruct'
+
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -14,6 +18,8 @@ Spork.prefork do
   require 'factory_girl_rails'
   require 'database_cleaner'
   require 'shoulda'
+  require 'capybara/rspec'
+  require 'webmock/rspec'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -61,9 +67,17 @@ Spork.prefork do
 
     # FactoryGirl
     config.include FactoryGirl::Syntax::Methods
+    config.include Capybara::RSpecMatchers
   end
 end
 
 Spork.each_run do
   FactoryGirl.reload
+end
+
+def response_from_template(tpl, vars = {})
+  bind = OpenStruct.new(vars)
+
+  tpl = File.read(Rails.root.join('../support/xml', "#{tpl}.erb"))
+  ERB.new(tpl).result(bind.instance_eval { binding })
 end

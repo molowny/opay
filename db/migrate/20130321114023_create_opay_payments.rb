@@ -5,7 +5,7 @@ class CreateOpayPayments < ActiveRecord::Migration
       t.string :session_id
       t.string :provider
       t.float :amount
-      t.boolean :finished
+      t.boolean :finished, null: false, default: false
 
       t.timestamps
     end
