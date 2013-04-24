@@ -33,7 +33,7 @@ module Opay
         options[:sig]            = Providers::Payu.create_form_sig(options)
 
         fields = options.map { |key, val| @template.hidden_field_tag(key, val) }.join("\n")
-        js = "<script type=\"text/javascript\"><!-- document.forms['payu_payment_form_#{object.id}'].js.value = 1; --></script>".html_safe
+        js = "<script type=\"text/javascript\">document.forms['payu_payment_form_#{object.id}'].js.value = 1;</script>"
 
         "#{fields}\n#{js}".html_safe
       end

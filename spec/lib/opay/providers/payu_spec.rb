@@ -43,19 +43,21 @@ module Opay
         options[:last_name]    = 'Kowalski'
         options[:email]        = 'kowalski@gmail.com'
 
-        options[:pos_id]       = '123457'
-        options[:pos_auth_key] = 'DiEKzTD'
-        options[:session_id]   = '2af5c662cab479e5471ca76326a57563'
+        options[:pos_id]       = '122177'
+        options[:pos_auth_key] = 'qKoC8JK'
+        options[:session_id]   = 'a7deb9a6840e764b4dac3ce9469a788c'
 
-        options[:amount]       = 1000
-        options[:desc]         = 'Payment description'
+        options[:amount]       = 100
+        options[:desc]         = 'Test payment'
         options[:client_ip]    = '127.0.0.1'
         options[:js]           = 0
-        options[:ts]           = '1366818311'
+        options[:ts]           = '1366819972'
 
         options[:pay_type]     = 't'
 
-        subject.class_eval { create_form_sig(options) }.should eq '242fa2985eaab1b14c0ceb66d5bd76a2'
+        Opay.config.key1 = 'acd63ab0226ee883365718abefd6147c'
+
+        subject.class_eval { create_form_sig(options) }.should eq 'f3ef26044eef9400342cc0b514bd3cc5'
       end
 
     end
