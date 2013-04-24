@@ -2,6 +2,16 @@ require 'spec_helper'
 
 module Opay
   describe Payment do
-    pending "add some examples to (or delete) #{__FILE__}"
+
+    describe 'associations' do
+      it { should belong_to(:payable) }
+    end
+
+    specify 'validations' do
+      should validate_presence_of(:payable)
+      should validate_presence_of(:provider)
+      should validate_presence_of(:amount)
+      should validate_presence_of(:session_id)
+    end
   end
 end

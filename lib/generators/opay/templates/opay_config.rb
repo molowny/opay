@@ -6,4 +6,6 @@ Opay.configure do |config|
   config.pos_auth_key = ''
   config.key1 = ''
   config.key1 = ''
+
+  # config.test_mode = true
 end

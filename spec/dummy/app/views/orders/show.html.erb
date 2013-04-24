@@ -10,6 +10,16 @@
   <%= @order.amount %>
 </p>
 
+<p>
+  <b>Paid:</b>
+  <%= @order.finished? %>
+</p>
+
+<%= opay_form_for(@order) do |f| %>
+  <%= f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment' %>
+  <%= f.submit 'pay with payu' %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

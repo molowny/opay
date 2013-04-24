@@ -6,7 +6,7 @@ source "http://rubygems.org"
 gemspec
 
 # jquery-rails is used by the dummy application
-# gem "jquery-rails"
+gem "jquery-rails"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
@@ -15,23 +15,3 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-
-group :test, :development do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'shoulda'
-  gem 'webmock'
-
-  gem 'database_cleaner'
-
-  gem 'launchy'
-  gem 'capybara'
-
-  gem 'guard-rspec'
-  gem 'rb-fsevent', require: false
-
-  gem 'spork'
-  gem 'guard-spork'
-
-  gem 'terminal-notifier-guard' # OS X Notification Center
-end

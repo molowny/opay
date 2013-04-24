@@ -4,7 +4,10 @@ module Opay
   describe Payable do
     subject { Order.new }
 
-    it { should have_one(:payment) }
+    describe 'associations' do
+      it { should have_one(:payment) }
+    end
+
     it { should respond_to(:finished?) }
 
     it 'has unique session_id' do

@@ -9,7 +9,7 @@ module Opay
         options[:url]  = Opay::Providers::Payu.url(:new_payment)
         options[:html] = { id: "payu_payment_form_#{record.id}", class: 'payu_payment_form' }
 
-        record.create_payment!(session_id: record.payment_session_id, provider: 'payu', amount: record.amount)
+        record.create_payment!(session_id: record.payment_session_id, provider: 'payu', amount: record.amount) if record.payment.blank?
 
         form_for(record, options, &block)
       end
@@ -25,8 +25,10 @@ module Opay
 
         options[:amount]       ||= object.amount
         options[:desc]         ||= object.payment_description
-        options[:client_ip]    ||= request.env['HTTP_USER_AGENT']
+        options[:client_ip]    ||= @template.request.remote_ip
         options[:js]             = 0
+
+        options[:pay_type] = 't' if Opay.config.test_mode
 
 
         fields = options.map { |key, val| @template.hidden_field_tag(key, val) }.join("\n")

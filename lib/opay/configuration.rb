@@ -13,6 +13,8 @@ module Opay
       config_accessor :key1
       config_accessor :key2
 
+      config_accessor :test_mode
+
       reset_config
     end
 
@@ -32,6 +34,8 @@ module Opay
           config.pos_auth_key = 'pos_auth_key'
           config.key1 = 'key1'
           config.key2 = 'key2'
+
+          config.test_mode = false
         end
       end
 

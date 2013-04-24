@@ -16,6 +16,7 @@ module Opay
     initializer 'opay.initialize' do
       ActiveSupport.on_load(:action_view) do
         include Opay::Helpers::FormHelper
+        include Opay::Helpers::PayuHelper
       end
     end
 

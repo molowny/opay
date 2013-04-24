@@ -3,19 +3,13 @@ require 'spec_helper'
 module Opay
   describe Helpers::PayuHelper, type: :helper do
 
-    before do
-      # stub(request).env { {"HTTP_USER_AGENT" => "Some String"} }
-    end
-
     context 'form tag' do
+      before do
+        @order = Order.create! name: 'first order', amount: 1000 # 10 zł
+      end
+
       it 'creates form tag' do
-        order = Order.create! name: 'first order', amount: 1000 # 10 zł
-
-        # helper.payu_form_for(order) do |f|
-        #   f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
-        # end.should be true
-
-        html = helper.payu_form_for(order) do |f|
+        html = helper.payu_form_for(@order) do |f|
           f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
         end
 
@@ -34,6 +28,17 @@ module Opay
         html.should have_css('input[name="desc"]')
         html.should have_css('input[name="client_ip"]')
         html.should have_css('input[name="js"]')
+      end
+
+      it 'works in test mode' do
+        Opay.config.test_mode = true
+        Opay.config.test_mode.should be true
+
+        html = helper.payu_form_for(@order) do |f|
+          f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
+        end
+
+        html.should have_css('input[name="pay_type"][value="t"]')
       end
     end
 
