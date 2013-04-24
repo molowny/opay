@@ -32,12 +32,11 @@ module Opay
         options[:pay_type] = 't' if Opay.config.test_mode
 
         sig_string = ''
-        %w( pos_id pay_type session_id pos_auth_key amount desc desc2 trsDesc order_id first_name last_name  payback_login street street_hn street_an city  post_code country email phone language  client_ip ts ).each do |key|
+        %w( pos_id pay_type session_id pos_auth_key amount desc desc2 trsDesc order_id first_name last_name payback_login street street_hn street_an city post_code country email phone language lient_ip ts ).each do |key|
           sig_string += options[key.to_sym].to_s if options.has_key?(key.to_sym)
         end
 
         options[:sig] = Providers::Payu.create_sig(sig_string)
-
 
         fields = options.map { |key, val| @template.hidden_field_tag(key, val) }.join("\n")
         js = "<script type=\"text/javascript\"><!-- document.forms['payu_payment_form_#{object.id}'].js.value = 1; --></script>"

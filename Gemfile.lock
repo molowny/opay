@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    opay (1.0.2)
+    opay (1.0.4)
       rails (~> 3.2.13)
 
 GEM
