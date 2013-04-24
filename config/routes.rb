@@ -4,4 +4,5 @@ Opay::Engine.routes.draw do
   # scope :payu do
   #   post '/online' => 'payu#online', as: online
   # end
+  post '/online' => 'payu#online', as: online
 end
