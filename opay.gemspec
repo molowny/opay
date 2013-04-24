@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["ollownia@gmail.com"]
   s.homepage    = "https://github.com/olownia/opay"
   s.summary     = "Payu rails engine."
-  s.description = "Payu (polish payment servicce) rails engine."
+  s.description = "Payu (polish payment service) rails engine."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
