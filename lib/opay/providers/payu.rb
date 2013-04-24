@@ -62,7 +62,6 @@ module Opay
         end
       end
 
-      private
       def self.create_sig(*values)
         Digest::MD5.hexdigest(values.join + Opay.config.key1)
       end

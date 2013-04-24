@@ -28,6 +28,9 @@ module Opay
         html.should have_css('input[name="desc"]')
         html.should have_css('input[name="client_ip"]')
         html.should have_css('input[name="js"]')
+
+        html.should have_css('input[name="ts"]')
+        html.should have_css('input[name="sig"]')
       end
 
       it 'works in test mode' do

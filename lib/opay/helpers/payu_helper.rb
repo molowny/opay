@@ -27,8 +27,16 @@ module Opay
         options[:desc]         ||= object.payment_description
         options[:client_ip]    ||= @template.request.remote_ip
         options[:js]             = 0
+        options[:ts]             = Time.now.to_i.to_s
 
         options[:pay_type] = 't' if Opay.config.test_mode
+
+        sig_string = ''
+        %w( pos_id pay_type session_id pos_auth_key amount desc desc2 trsDesc order_id first_name last_name  payback_login street street_hn street_an city  post_code country email phone language  client_ip ts ).each do |key|
+          sig_string += options[key.to_sym].to_s if options.has_key?(key.to_sym)
+        end
+
+        options[:sig] = Providers::Payu.create_sig(sig_string)
 
 
         fields = options.map { |key, val| @template.hidden_field_tag(key, val) }.join("\n")
