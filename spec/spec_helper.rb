@@ -58,9 +58,11 @@ Spork.prefork do
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
     end
+
     config.before(:each) do
       DatabaseCleaner.start
     end
+
     config.after(:each) do
       DatabaseCleaner.clean
     end
@@ -73,6 +75,10 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
+
+  Dir["#{Rails.root}/../../lib/opay/*/*.rb"].each do |file|
+    load file
+  end
 end
 
 def response_from_template(tpl, vars = {})

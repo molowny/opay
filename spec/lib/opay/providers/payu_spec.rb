@@ -35,6 +35,29 @@ module Opay
         subject.class_eval { verify_sig(sig, '23456', session_id, ts) }.should be false
       end
 
+      it 'creates md5 sig from form options' do
+        order = Order.create! name: 'first order', amount: 1000 # 10 zł
+
+        options = {}
+        options[:first_name]   = 'Jan'
+        options[:last_name]    = 'Kowalski'
+        options[:email]        = 'kowalski@gmail.com'
+
+        options[:pos_id]       = '123457'
+        options[:pos_auth_key] = 'DiEKzTD'
+        options[:session_id]   = '2af5c662cab479e5471ca76326a57563'
+
+        options[:amount]       = 1000
+        options[:desc]         = 'Payment description'
+        options[:client_ip]    = '127.0.0.1'
+        options[:js]           = 0
+        options[:ts]           = '1366818311'
+
+        options[:pay_type]     = 't'
+
+        subject.class_eval { create_form_sig(options) }.should eq '242fa2985eaab1b14c0ceb66d5bd76a2'
+      end
+
     end
 
     context 'online' do

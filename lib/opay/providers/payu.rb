@@ -69,6 +69,15 @@ module Opay
       def self.verify_sig(sig, *values)
         sig == Digest::MD5.hexdigest(values.join + Opay.config.key2)
       end
+
+      def self.create_form_sig(options)
+        sig_string = ''
+        %w( pos_id pay_type session_id pos_auth_key amount desc desc2 trsDesc order_id first_name last_name payback_login street street_hn street_an city post_code country email phone language client_ip ts ).each do |key|
+          sig_string += options[key.to_sym].to_s if options.has_key?(key.to_sym)
+        end
+
+        create_sig(sig_string)
+      end
     end
 
   end

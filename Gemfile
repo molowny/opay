@@ -15,3 +15,23 @@ gem "jquery-rails"
 
 # To use debugger
 # gem 'debugger'
+
+# group :test, :development do
+#   gem 'rspec-rails'
+#   gem 'factory_girl_rails'
+#   gem 'shoulda'
+#   gem 'webmock'
+
+#   gem 'database_cleaner'
+
+#   gem 'launchy'
+#   gem 'capybara'
+
+#   gem 'guard-rspec'
+#   gem 'rb-fsevent', require: false
+
+#   gem 'spork'
+#   gem 'guard-spork'
+
+#   gem 'terminal-notifier-guard' # OS X Notification Center
+# end

@@ -15,10 +15,25 @@
   <%= @order.finished? %>
 </p>
 
-<%= opay_form_for(@order) do |f| %>
-  <%= f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment' %>
-  <%= f.submit 'pay with payu' %>
-<% end %>
+
+
+<form method="post" id="payu_payment_form_2" class="payu_payment_form" action="https://www.platnosci.pl/paygw/UTF/NewPayment" accept-charset="UTF-8">
+  <input type="hidden" value="Jan" name="first_name" id="first_name">
+<input type="hidden" value="Kowalski" name="last_name" id="last_name">
+<input type="hidden" value="kowalski@gmail.com" name="email" id="email">
+<input type="hidden" value="Test payment" name="desc" id="desc">
+<input type="hidden" value="122177" name="pos_id" id="pos_id">
+<input type="hidden" value="qKoC8JK" name="pos_auth_key" id="pos_auth_key">
+<input type="hidden" value="d8bf541acd87654f3d815aca7140383d" name="session_id" id="session_id">
+<input type="hidden" value="1000" name="amount" id="amount">
+<input type="hidden" value="127.0.0.1" name="client_ip" id="client_ip">
+<input type="hidden" value="0" name="js" id="js">
+<input type="hidden" value="1366813767" name="ts" id="ts">
+<input type="hidden" value="t" name="pay_type" id="pay_type">
+<input type="hidden" value="27ec04d7d566313372bba07e7b9decf7" name="sig" id="sig">
+<script type="text/javascript"><!-- document.forms['payu_payment_form_2'].js.value = 1; --></script>
+  <input type="submit" value="pay with payuu" name="commit">
+</form>
 
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
