@@ -9,7 +9,7 @@ module Opay
     end
 
     def finished?
-      payment.finished?
+      payment.present? && payment.finished?
     end
 
     def finish

@@ -30,3 +30,19 @@ then add the following to your routes.rb file:
 # config/routes.rb
 mount Opay::Engine => '/opay'
 ```
+
+declare which of your models recive payments
+
+``` ruby
+class ModelName < ActiveRecord::Base
+  include Opay::Payable
+end
+```
+
+create payment form
+
+``` haml
+= opay_form_for(@model_name) do |f|
+  = f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Payment description'
+  = f.submit 'pay with payu'
+```

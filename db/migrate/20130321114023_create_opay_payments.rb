@@ -4,7 +4,7 @@ class CreateOpayPayments < ActiveRecord::Migration
       t.references :payable, polymorphic: true
       t.string :session_id
       t.string :provider
-      t.float :amount
+      t.integer :amount
       t.boolean :finished, null: false, default: false
 
       t.timestamps
