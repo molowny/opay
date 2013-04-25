@@ -18,9 +18,18 @@ module Opay
       end
     end
 
+    def prepare_payment
+      if payment.blank?
+        create_payment!(provider: 'payu', amount: amount)
+      else
+        payment.update_attribute(:session_id, Payment.generate_session_id)
+        payment
+      end
+    end
+
     def payment_session_id
-      raise 'Resource must be saved before payment' if id.nil?
-      Digest::MD5.hexdigest(self.class.name + id.to_s)
+      raise 'Resource must be prepared before payment' if payment.blank?
+      payment.session_id
     end
 
     module ClassMethods

@@ -8,6 +8,10 @@ module Opay
         payu_form_for(record, options, &block)
       end
 
+      def payment_info(options = {})
+        payu_payment_info(options)
+      end
+
     end
 
   end

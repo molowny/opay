@@ -9,12 +9,13 @@ module Opay
         options[:url]  = Opay::Providers::Payu.url(:new_payment)
         options[:html] = { id: "payu_payment_form_#{record.id}", class: 'payu_payment_form' }
 
-        record.create_payment!(session_id: record.payment_session_id, provider: 'payu', amount: record.amount) if record.payment.blank?
+        record.prepare_payment
+        # record.create_payment!(session_id: record.payment_session_id, provider: 'payu', amount: record.amount) if record.payment.blank?
 
         form_for(record, options, &block)
       end
 
-      def payment_info(options = {})
+      def payu_payment_info(options = {})
         options[:first_name]   ||= object.first_name
         options[:last_name]    ||= object.last_name
         options[:email]        ||= object.email

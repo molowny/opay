@@ -11,7 +11,7 @@ module Opay
       should validate_presence_of(:payable)
       should validate_presence_of(:provider)
       should validate_presence_of(:amount)
-      should validate_presence_of(:session_id)
     end
+
   end
 end

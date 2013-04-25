@@ -67,7 +67,8 @@ module Opay
 
       before do
         @order = Order.create! name: 'first order', amount: 1000 # 10 zł
-        @order.create_payment!(session_id: @order.payment_session_id, provider: 'payu', amount: @order.amount)
+        @order.prepare_payment
+        # @order.create_payment!(session_id: @order.payment_session_id, provider: 'payu', amount: @order.amount)
       end
 
       it 'valid payment' do
