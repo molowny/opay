@@ -22,6 +22,7 @@ module Opay
       if payment.blank?
         create_payment!(provider: 'payu', amount: amount)
       else
+        raise 'Payment was finished' if payment.finished?
         payment.update_attribute(:session_id, Payment.generate_session_id)
         payment
       end

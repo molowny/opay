@@ -1,6 +1,6 @@
 module Opay
   module Generators
-    class ConfigGenerator < Rails::Generators::Base
+    class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
 
       desc "Description: Copies Opay configuration file to your application's initializer directory"
