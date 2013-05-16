@@ -23,7 +23,7 @@ $ rails g opay:install
 rake opay:install:migrations
 # This will run any pending migrations
 rake db:migrate
-``` 
+```
 then add the following to your routes.rb file:
 
 ``` ruby
@@ -46,3 +46,5 @@ create payment form
   = f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Payment description'
   = f.submit 'pay with payu'
 ```
+
+set up online url in payu.pl to: `/opay/payu/online`
