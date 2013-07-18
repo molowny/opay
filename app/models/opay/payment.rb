@@ -1,7 +1,7 @@
 module Opay
   class Payment < ActiveRecord::Base
     belongs_to :payable, polymorphic: true
-    attr_accessible :provider, :amount, :finished, :session_id, :status
+    # attr_accessible :provider, :amount, :finished, :session_id, :status
     validates :payable, :provider, :amount, presence: true
 
     before_create do |p|
