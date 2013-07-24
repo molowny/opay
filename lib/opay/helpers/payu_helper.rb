@@ -4,13 +4,11 @@ module Opay
     module PayuHelper
 
       def payu_form_for(record, options = {}, &block)
-        options[:builder] ||= Opay::FormBuilder
+        record.prepare_payment
 
+        options[:builder] ||= Opay::FormBuilder
         options[:url]  = Opay::Providers::Payu.url(:new_payment)
         options[:html] = { id: "payu_payment_form_#{record.id}", class: 'payu_payment_form' }
-
-        record.prepare_payment
-        # record.create_payment!(session_id: record.payment_session_id, provider: 'payu', amount: record.amount) if record.payment.blank?
 
         form_for(record, options, &block)
       end
