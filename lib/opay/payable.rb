@@ -20,7 +20,7 @@ module Opay
 
     def prepare_payment
       if payment.blank?
-        create_payment!(provider: 'payu', amount: amount)
+        create_payment!(provider: 'payu', amount: amount, payable: self)
       else
         raise 'Payment was finished' if payment.finished?
         payment.update_attribute(:session_id, Payment.generate_session_id)
