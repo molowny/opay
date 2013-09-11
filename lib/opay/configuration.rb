@@ -14,6 +14,7 @@ module Opay
       config_accessor :key2
 
       config_accessor :test_mode
+      config_accessor :process_payments_localy
 
       reset_config
     end
@@ -36,6 +37,7 @@ module Opay
           config.key2 = 'key2'
 
           config.test_mode = false
+          config.process_payments_localy = false
         end
       end
 

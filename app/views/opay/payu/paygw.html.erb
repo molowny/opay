@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <tr>
+        <th>first name:</th>
+        <td><%= params[:first_name] %></td>
+    </tr>
+
+    <tr>
+        <th>last name:</th>
+        <td><%= params[:last_name] %></td>
+    </tr>
+
+    <tr>
+        <th>session id:</th>
+        <td><%= params[:session_id] %></td>
+    </tr>
+
+    <tr>
+        <th>amount:</th>
+        <td><%= number_to_currency(params[:amount].to_i / 10) %></td>
+    </tr>
+</table>
+
+<%= link_to 'Poprawna autoryzacja', payu_correct_authorization_path(session_id: params[:session_id]), class: 'btn btn-success pull-left' %>
+<%= link_to 'Błędna autoryzacja', wrong_authorization_path, class: 'btn btn-warning pull-right' %>
+
+

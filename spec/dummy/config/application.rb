@@ -71,6 +71,8 @@ module Dummy
       g.stylesheets = false
       g.javascripts = false
     end
+
+    config.autoload_paths += ["#{Rails.root}/../../lib}"]
   end
 end
 

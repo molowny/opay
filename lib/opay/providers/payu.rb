@@ -5,7 +5,7 @@ module Opay
   module Providers
 
     class Payu
-      URL = 'https://www.platnosci.pl/paygw/UTF'
+      PAYU_URL = 'https://www.platnosci.pl/paygw/UTF'
 
       def self.process(pos_id, session_id, ts, sig)
         return false unless verify_sig(sig, pos_id, session_id, ts)
@@ -54,11 +54,13 @@ module Opay
       end
 
       def self.url(action)
+        payu_url = Opay.config.process_payments_localy == true ? '/opay/payu/paygw/UTF' : PAYU_URL
+
         case action
         when :new_payment
-          "#{URL}/NewPayment"
+          "#{payu_url}/NewPayment"
         when :get_payment_info
-          "#{URL}/Payment/get/xml"
+          "#{payu_url}/Payment/get/xml"
         end
       end
 

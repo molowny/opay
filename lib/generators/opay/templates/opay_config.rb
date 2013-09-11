@@ -8,4 +8,5 @@ Opay.configure do |config|
   config.key2 = ''
 
   # config.test_mode = true
+  # config.process_payments_localy = true
 end

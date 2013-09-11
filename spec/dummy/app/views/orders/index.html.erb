@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Amount</th>
+    <th>Paid?</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +14,8 @@
   <tr>
     <td><%= order.name %></td>
     <td><%= order.amount %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
+    <td><%= order.finished? %></td>
+    <td><%= link_to 'Payment', order unless order.finished?  %></td>
     <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

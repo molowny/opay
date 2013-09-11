@@ -6,6 +6,7 @@ module Opay
     context 'form tag' do
       before do
         @order = Order.create! name: 'first order', amount: 1000 # 10 zł
+        Opay.config.process_payments_localy = false
       end
 
       it 'creates form tag' do
@@ -42,6 +43,16 @@ module Opay
         end
 
         html.should have_css('input[name="pay_type"][value="t"]')
+      end
+
+      it 'works localy' do
+        Opay.config.process_payments_localy = true
+
+        html = helper.payu_form_for(@order) do |f|
+          f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
+        end
+
+        html.should have_css('form[action="/opay/payu/paygw/UTF/NewPayment"]')
       end
     end
 

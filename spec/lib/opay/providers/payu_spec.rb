@@ -7,6 +7,7 @@ module Opay
       before do
         @key1 = Opay.config.key1
         @key2 = Opay.config.key2
+        Opay.config.process_payments_localy = false
       end
 
       it 'creates md5 sig' do
@@ -66,6 +67,7 @@ module Opay
       subject { Providers::Payu }
 
       before do
+        Opay.config.process_payments_localy = false
         @order = Order.create! name: 'first order', amount: 1000 # 10 zł
         @order.prepare_payment
         # @order.create_payment!(session_id: @order.payment_session_id, provider: 'payu', amount: @order.amount)

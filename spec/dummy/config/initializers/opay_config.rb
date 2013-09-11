@@ -8,4 +8,5 @@ Opay.configure do |config|
   config.key2 = '2af5c662cab479e5471ca76326a57563'
 
   config.test_mode = true
+  config.process_payments_localy = true if Rails.env.development?
 end

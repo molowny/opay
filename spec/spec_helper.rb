@@ -84,6 +84,6 @@ end
 def response_from_template(tpl, vars = {})
   bind = OpenStruct.new(vars)
 
-  tpl = File.read(Rails.root.join('../support/xml', "#{tpl}.erb"))
+  tpl = File.read(Rails.root.join('../fixtures/xml', "#{tpl}.erb"))
   ERB.new(tpl).result(bind.instance_eval { binding })
 end
