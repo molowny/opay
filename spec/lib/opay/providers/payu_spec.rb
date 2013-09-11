@@ -127,6 +127,32 @@ module Opay
         subject.process(Opay.config.pos_id, @order.payment_session_id, ts, sig).should be false
       end
 
+      it 'valid payment with callback' do
+        payment_info = {
+          pos_id: Opay.config.pos_id,
+          session_id: @order.payment_session_id,
+          order_id: nil,
+          status: 99,
+          amount: @order.amount,
+          desc: 'description',
+          ts: Time.now.to_i.to_s
+        }
+
+        payment_info[:sig] = Digest::MD5.hexdigest(payment_info.values.join + Opay.config.key2)
+
+        stub_request(:post, 'https://www.platnosci.pl/paygw/UTF/Payment/get/xml')
+          .to_return(status: 200, body: response_from_template('success.xml', payment_info))
+
+        ts = Time.now.to_i.to_s
+        sig =  Digest::MD5.hexdigest(Opay.config.pos_id.to_s + @order.payment_session_id + ts + Opay.config.key2)
+
+        @order.payment.finished.should be false
+        @order.finished.should be false
+        subject.process(Opay.config.pos_id, @order.payment_session_id, ts, sig).should be true
+        @order.payment.reload.finished.should be true
+        @order.reload.finished.should be true
+      end
+
     end
   end
 end

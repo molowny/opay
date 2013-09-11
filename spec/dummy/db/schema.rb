@@ -9,28 +9,31 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326152550) do
+ActiveRecord::Schema.define(version: 20130326152550) do
 
-  create_table "opay_payments", :force => true do |t|
+  create_table "opay_payments", force: true do |t|
     t.integer  "payable_id"
     t.string   "payable_type"
-    t.string   "session_id"
-    t.string   "provider"
-    t.float    "amount"
-    t.boolean  "finished",     :default => false, :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.string   "session_id",                   null: false
+    t.string   "provider",                     null: false
+    t.integer  "amount",                       null: false
+    t.boolean  "finished",     default: false, null: false
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "opay_payments", ["payable_id", "payable_type"], :name => "index_opay_payments_on_payable_id_and_payable_type"
+  add_index "opay_payments", ["payable_id", "payable_type"], name: "index_opay_payments_on_payable_id_and_payable_type"
+  add_index "opay_payments", ["session_id"], name: "index_opay_payments_on_session_id", unique: true
 
-  create_table "orders", :force => true do |t|
+  create_table "orders", force: true do |t|
     t.string   "name"
     t.string   "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "finished",   default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

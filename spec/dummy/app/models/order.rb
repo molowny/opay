@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   include Opay::Payable
-  # attr_accessible :amount, :name
 
-  # after_payment do
-  # end
+  after_payment do
+    update_attribute(:finished, true)
+  end
 end
