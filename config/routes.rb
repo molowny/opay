@@ -2,14 +2,22 @@ Opay::Engine.routes.draw do
 
   # payu
   scope 'payu' do
-    post '/online' => 'payu#online', as: :payu_online
+    post 'online' => 'payu#online', as: :payu_online
 
     if Opay.config.process_payments_localy
-      patch '/paygw/UTF/NewPayment' => 'payu#paygw', as: :payu_new_payment
-
-      get '/correct_authorization' => 'payu#correct_authorization', as: :payu_correct_authorization
-      get '/wrong_authorizationt' => 'payu#wrong_authorizationt', as: :wrong_authorization
+      patch 'paygw/UTF/NewPayment' => 'payu#paygw', as: :payu_new_payment
     end
+  end
+
+  # paypal
+  scope 'paypal' do
+    patch 'new' => 'paypal#new', as: :new_paypal_payment
+    get 'create' => 'paypal#create', as: :paypals_path
+  end
+
+  if Opay.config.process_payments_localy
+    get 'correct_authorization' => 'payu#correct_authorization', as: :opay_correct_authorization
+    get 'wrong_authorizationt' => 'payu#wrong_authorizationt', as: :opay_wrong_authorization
   end
 
 end

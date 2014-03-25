@@ -35,3 +35,7 @@ gem 'jquery-rails'
 
 #   gem 'terminal-notifier-guard' # OS X Notification Center
 # end
+
+group :test do
+  gem 'webmock'
+end

@@ -5,15 +5,15 @@ require "opay/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "opay"
+  s.name        = 'opay'
   s.version     = Opay::VERSION
-  s.authors     = ["Mariusz Ołownia"]
-  s.email       = ["ollownia@gmail.com"]
-  s.homepage    = "https://github.com/olownia/opay"
-  s.summary     = "Payu rails engine."
-  s.description = "Payu (polish payment service) rails engine."
+  s.authors     = ['Mariusz Ołownia']
+  s.email       = ['ollownia@gmail.com']
+  s.homepage    = 'https://github.com/olownia/opay'
+  s.summary     = 'Payu rails engine.'
+  s.description = 'Payu (polish payment service) rails engine.'
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
 
   s.add_dependency 'rails', '~> 4.0.0'
   # s.add_dependency "jquery-rails"
@@ -22,10 +22,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'pg'
 
+  s.add_development_dependency 'activemerchant'
+
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'shoulda'
-  s.add_development_dependency 'webmock'
 
   s.add_development_dependency 'database_cleaner'
 
@@ -39,5 +40,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'terminal-notifier-guard' # OS X Notification Center
 
-  s.test_files = Dir["spec/**/*"]
+  s.test_files = Dir['spec/**/*']
 end

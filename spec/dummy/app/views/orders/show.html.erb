@@ -22,6 +22,11 @@
   <%= f.submit :pay_with_payu %>
 <% end -%>
 
+<%= paypal_form_for(@order) do |f| %>
+  <%= f.paypal_payment_info desc: 'Test payment', client_ip: '127.0.0.1' %>
+  <%= f.paypal_submit_tag %>
+<% end -%>
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

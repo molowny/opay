@@ -5,8 +5,8 @@ module Opay
     context 'md5 signs' do
 
       before do
-        @key1 = Opay.config.key1
-        @key2 = Opay.config.key2
+        @key1 = Opay.config.payu_key1
+        @key2 = Opay.config.payu_key2
         Opay.config.process_payments_localy = false
       end
 
@@ -56,7 +56,7 @@ module Opay
 
         options[:pay_type]     = 't'
 
-        Opay.config.key1 = 'acd63ab0226ee883365718abefd6147c'
+        Opay.config.payu_key1 = 'acd63ab0226ee883365718abefd6147c'
 
         subject.class_eval { create_form_sig(options) }.should eq 'f3ef26044eef9400342cc0b514bd3cc5'
       end
@@ -75,7 +75,7 @@ module Opay
 
       it 'valid payment' do
         payment_info = {
-          pos_id: Opay.config.pos_id,
+          pos_id: Opay.config.payu_pos_id,
           session_id: @order.payment_session_id,
           order_id: nil,
           status: 99,
@@ -84,22 +84,22 @@ module Opay
           ts: Time.now.to_i.to_s
         }
 
-        payment_info[:sig] = Digest::MD5.hexdigest(payment_info.values.join + Opay.config.key2)
+        payment_info[:sig] = Digest::MD5.hexdigest(payment_info.values.join + Opay.config.payu_key2)
 
         stub_request(:post, 'https://www.platnosci.pl/paygw/UTF/Payment/get/xml')
           .to_return(status: 200, body: response_from_template('success.xml', payment_info))
 
         ts = Time.now.to_i.to_s
-        sig =  Digest::MD5.hexdigest(Opay.config.pos_id.to_s + @order.payment_session_id + ts + Opay.config.key2)
+        sig =  Digest::MD5.hexdigest(Opay.config.payu_pos_id.to_s + @order.payment_session_id + ts + Opay.config.payu_key2)
 
         @order.payment.finished.should be false
-        subject.process(Opay.config.pos_id, @order.payment_session_id, ts, sig).should be true
+        subject.process(Opay.config.payu_pos_id, @order.payment_session_id, ts, sig).should be true
         @order.payment.reload.finished.should be true
       end
 
       it 'invalid payment' do
         payment_info = {
-          pos_id: Opay.config.pos_id,
+          pos_id: Opay.config.payu_pos_id,
           session_id: @order.payment_session_id,
           order_id: nil,
           status: 99,
@@ -114,9 +114,9 @@ module Opay
           .to_return(status: 200, body: response_from_template('success.xml', payment_info))
 
         ts = Time.now.to_i.to_s
-        sig =  Digest::MD5.hexdigest(Opay.config.pos_id.to_s + @order.payment_session_id + ts + Opay.config.key2)
+        sig =  Digest::MD5.hexdigest(Opay.config.payu_pos_id.to_s + @order.payment_session_id + ts + Opay.config.payu_key2)
 
-        subject.process(Opay.config.pos_id, @order.payment_session_id, ts, sig).should be false
+        subject.process(Opay.config.payu_pos_id, @order.payment_session_id, ts, sig).should be false
       end
 
       it 'error' do
@@ -124,14 +124,14 @@ module Opay
           .to_return(status: 200, body: response_from_template('error.xml'))
 
         ts = Time.now.to_i.to_s
-        sig =  Digest::MD5.hexdigest(Opay.config.pos_id.to_s + @order.payment_session_id + ts + Opay.config.key2)
+        sig =  Digest::MD5.hexdigest(Opay.config.payu_pos_id.to_s + @order.payment_session_id + ts + Opay.config.payu_key2)
 
-        subject.process(Opay.config.pos_id, @order.payment_session_id, ts, sig).should be false
+        subject.process(Opay.config.payu_pos_id, @order.payment_session_id, ts, sig).should be false
       end
 
       it 'valid payment with callback' do
         payment_info = {
-          pos_id: Opay.config.pos_id,
+          pos_id: Opay.config.payu_pos_id,
           session_id: @order.payment_session_id,
           order_id: nil,
           status: 99,
@@ -140,17 +140,17 @@ module Opay
           ts: Time.now.to_i.to_s
         }
 
-        payment_info[:sig] = Digest::MD5.hexdigest(payment_info.values.join + Opay.config.key2)
+        payment_info[:sig] = Digest::MD5.hexdigest(payment_info.values.join + Opay.config.payu_key2)
 
         stub_request(:post, 'https://www.platnosci.pl/paygw/UTF/Payment/get/xml')
           .to_return(status: 200, body: response_from_template('success.xml', payment_info))
 
         ts = Time.now.to_i.to_s
-        sig =  Digest::MD5.hexdigest(Opay.config.pos_id.to_s + @order.payment_session_id + ts + Opay.config.key2)
+        sig =  Digest::MD5.hexdigest(Opay.config.payu_pos_id.to_s + @order.payment_session_id + ts + Opay.config.payu_key2)
 
         @order.payment.finished.should be false
         @order.finished.should be false
-        subject.process(Opay.config.pos_id, @order.payment_session_id, ts, sig).should be true
+        subject.process(Opay.config.payu_pos_id, @order.payment_session_id, ts, sig).should be true
         @order.payment.reload.finished.should be true
         @order.reload.finished.should be true
       end

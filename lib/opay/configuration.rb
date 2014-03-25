@@ -5,16 +5,24 @@ module Opay
     include ActiveSupport::Configurable
 
     included do
-      config_accessor :provider
+      config_accessor :providers
 
       # payu configuration
-      config_accessor :pos_id
-      config_accessor :pos_auth_key
-      config_accessor :key1
-      config_accessor :key2
+      config_accessor :payu_pos_id
+      config_accessor :payu_pos_auth_key
+      config_accessor :payu_key1
+      config_accessor :payu_key2
+
+      # paypal configuration
+      config_accessor :paypal_login
+      config_accessor :paypal_password
+      config_accessor :paypal_signature
 
       config_accessor :test_mode
       config_accessor :process_payments_localy
+
+      config_accessor :success_path
+      config_accessor :cancel_path
 
       reset_config
     end
@@ -28,16 +36,21 @@ module Opay
       # Sets configuration back to default
       def reset_config
         configure do |config|
-          config.provider = :payu
+          config.providers = [:payu, :paypal]
 
           # payu configuration
-          config.pos_id = 999
-          config.pos_auth_key = 'pos_auth_key'
-          config.key1 = 'key1'
-          config.key2 = 'key2'
+          config.payu_pos_id = ENV['PAYU_POS_ID']
+          config.payu_pos_auth_key = ENV['PAYU_POS_AUTH_KEY']
+          config.payu_key1 = ENV['PAYU_KEY1']
+          config.payu_key2 = ENV['PAYU_KEY2']
+
+          # paypal configuration
+          config.paypal_login = ENV['PAYPAL_LOGIN']
+          config.paypal_password = ENV['PAYPAL_PASSWORD']
+          config.paypal_signature = ENV['PAYPAL_SIGNATURE']
 
           config.test_mode = false
-          config.process_payments_localy = false
+          config.process_payments_localy = true if Rails.env.development?
         end
       end
 

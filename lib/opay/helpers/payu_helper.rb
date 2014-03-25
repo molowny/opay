@@ -8,7 +8,7 @@ module Opay
 
         options[:builder] ||= Opay::FormBuilder
         options[:url]  = Opay::Providers::Payu.url(:new_payment)
-        options[:html] = { id: "payu_payment_form_#{record.id}", class: 'payu_payment_form' }
+        options[:html] = { id: "payu_payment_form_#{record.id}", class: 'opay-form opay-payu-form' }
 
         form_for(record, options, &block)
       end
@@ -18,8 +18,8 @@ module Opay
         options[:last_name]    ||= object.last_name
         options[:email]        ||= object.email
 
-        options[:pos_id]       ||= Opay.config.pos_id
-        options[:pos_auth_key] ||= Opay.config.pos_auth_key
+        options[:pos_id]       ||= Opay.config.payu_pos_id
+        options[:pos_auth_key] ||= Opay.config.payu_pos_auth_key
         options[:session_id]   ||= object.payment_session_id
 
         options[:amount]       ||= object.amount

@@ -65,11 +65,11 @@ module Opay
       end
 
       def self.create_sig(*values)
-        Digest::MD5.hexdigest(values.join + Opay.config.key1)
+        Digest::MD5.hexdigest(values.join + Opay.config.payu_key1)
       end
 
       def self.verify_sig(sig, *values)
-        sig == Digest::MD5.hexdigest(values.join + Opay.config.key2)
+        sig == Digest::MD5.hexdigest(values.join + Opay.config.payu_key2)
       end
 
       def self.create_form_sig(options)
