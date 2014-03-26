@@ -62,10 +62,10 @@ create payment form
   = f.submit 'pay with payu'
 ```
 
+set up online url in payu.pl to: `/opay/payu/online`
+
 ``` haml
 = opay_form_for(@model_name, provider: :paypal) do |f|
   = f.payment_info desc: 'Test payment', client_ip: '127.0.0.1'
   = f.submit 'pay with payu'
 ```
-
-set up online url in payu.pl to: `/opay/payu/online`
