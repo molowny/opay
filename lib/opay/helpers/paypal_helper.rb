@@ -7,13 +7,15 @@ module Opay
         record.prepare_payment
 
         options[:builder] ||= Opay::FormBuilder
-        options[:url]  = opay.new_paypal_payment_path
+        options[:url]  = opay.paypal_new_payment_path
         options[:html] = { id: "paypal_payment_form_#{record.id}", class: 'opay-form opay-paypal-form' }
 
         form_for(record, options, &block)
       end
 
       def paypal_payment_info(options = {})
+        options[:confirm_url] ||= @template.opay.paypal_confirm_payment_url
+        options[:cancel_url] ||= @template.main_app.send(Opay.config.cancel_url)
         options[:session_id] ||= object.payment_session_id
         options[:amount]     ||= object.amount
 

@@ -10,7 +10,7 @@ module Opay
       end
 
       it 'creates form tag' do
-        html = helper.opay_form_for(@order) do |f|
+        html = helper.opay_form_for(@order, provider: :payu) do |f|
           f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
         end
 
@@ -38,7 +38,7 @@ module Opay
         Opay.config.test_mode = true
         Opay.config.test_mode.should be true
 
-        html = helper.payu_form_for(@order) do |f|
+        html = helper.opay_form_for(@order, provider: :payu) do |f|
           f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
         end
 
@@ -48,7 +48,7 @@ module Opay
       it 'works localy' do
         Opay.config.process_payments_localy = true
 
-        html = helper.payu_form_for(@order) do |f|
+        html = helper.opay_form_for(@order, provider: :payu) do |f|
           f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1'
         end
 

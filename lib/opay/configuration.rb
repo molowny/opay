@@ -21,8 +21,8 @@ module Opay
       config_accessor :test_mode
       config_accessor :process_payments_localy
 
-      config_accessor :success_path
-      config_accessor :cancel_path
+      config_accessor :success_url
+      config_accessor :cancel_url
 
       reset_config
     end
@@ -37,6 +37,9 @@ module Opay
       def reset_config
         configure do |config|
           config.providers = [:payu, :paypal]
+
+          config.success_url = :success_payment_url
+          config.cancel_url = :cancel_payment_url
 
           # payu configuration
           config.payu_pos_id = ENV['PAYU_POS_ID']

@@ -4,6 +4,9 @@ Opay.configure do |config|
   config.test_mode = true
   # config.process_payments_localy = true if Rails.env.development?
 
+  config.success_url = :success_payment_url
+  config.cancel_url = :cancel_payment_url
+
   # payu configuration
   config.payu_pos_id = ENV['PAYU_POS_ID']
   config.payu_pos_auth_key = ENV['PAYU_POS_AUTH_KEY']

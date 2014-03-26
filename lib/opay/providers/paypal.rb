@@ -2,20 +2,14 @@ module Opay
   module Providers
 
     class Paypal
-      PAYU_URL = 'https://www.platnosci.pl/paygw/UTF'
-
-      def self.process(pos_id, session_id, ts, sig)
-        return false
-      end
-
-      def self.create_payment(session_id, description, ip)
+      def self.create_payment(session_id, description, ip, confirm_url, cancel_url)
         # for future items list
         payment = Opay::Payment.where(session_id: session_id).first!
 
         response = geteway.setup_purchase(payment.amount.to_i,
           ip: ip,
-          return_url: 'http://localhost:3000/opay/paypal/create',
-          cancel_return_url: 'http://localhost:3000/?cancel',
+          return_url: confirm_url,
+          cancel_return_url: cancel_url,
           order_id: session_id,
           items: [{
             name: description,
@@ -31,7 +25,7 @@ module Opay
         end
       end
 
-      def self.confirm_payment(token, payer_id, ip)
+      def self.process(token, payer_id, ip)
         payment = Opay::Payment.where(session_id: token).first!
 
         if Opay.config.process_payments_localy

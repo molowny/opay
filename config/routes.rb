@@ -11,8 +11,8 @@ Opay::Engine.routes.draw do
 
   # paypal
   scope 'paypal' do
-    patch 'new' => 'paypal#new', as: :new_paypal_payment
-    get 'create' => 'paypal#create', as: :paypals_path
+    patch 'new' => 'paypal#new', as: :paypal_new_payment
+    get 'confirm' => 'paypal#confirm', as: :paypal_confirm_payment
   end
 
   if Opay.config.process_payments_localy

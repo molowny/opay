@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><env:Header><RequesterCredentials xmlns="urn:ebay:api:PayPalAPI" xmlns:n1="urn:ebay:apis:eBLBaseComponents" env:mustUnderstand="0"><n1:Credentials><n1:Username>ollownia-facilitator_api1.gmail.com</n1:Username><n1:Password>1395743145</n1:Password><n1:Subject/><n1:Signature>AGUkzh-MeQY9FWOCQ5.UwnNAI5EgABkxUU7ynmHt9IbLYXd5FwKiwy6K</n1:Signature></n1:Credentials></RequesterCredentials></env:Header><env:Body><SetExpressCheckoutReq xmlns="urn:ebay:api:PayPalAPI">
+         <SetExpressCheckoutRequest xmlns:n2="urn:ebay:apis:eBLBaseComponents">
+           <n2:Version>72</n2:Version>
+           <n2:SetExpressCheckoutRequestDetails>
+             <n2:ReturnURL>http://localhost:3000/opay/paypal/create</n2:ReturnURL>
+             <n2:CancelURL>http://localhost:3000/?cancel</n2:CancelURL>
+             <n2:NoShipping>0</n2:NoShipping>
+             <n2:AddressOverride>0</n2:AddressOverride>
+             <n2:PaymentDetails>
+               <n2:OrderTotal currencyID="USD">10.00</n2:OrderTotal>
+               <n2:InvoiceID>KwjsCiLXpXKXRBM5zCWP</n2:InvoiceID>
+               <n2:ButtonSource>ActiveMerchant</n2:ButtonSource>
+               <n2:PaymentDetailsItem>
+                 <n2:Name>Description</n2:Name>
+                 <n2:Number/>
+                 <n2:Quantity>1</n2:Quantity>
+                 <n2:Amount currencyID="USD">10.00</n2:Amount>
+                 <n2:Description/>
+                 <n2:ItemURL/>
+               </n2:PaymentDetailsItem>
+               <n2:PaymentAction>Sale</n2:PaymentAction>
+             </n2:PaymentDetails>
+           </n2:SetExpressCheckoutRequestDetails>
+         </SetExpressCheckoutRequest>
+       </SetExpressCheckoutReq>
+       </env:Body></env:Envelope>
