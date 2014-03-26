@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    opay (1.2.1)
+    opay (1.2.2)
+      activemerchant
       rails (~> 4.0.0)
 
 GEM
@@ -194,7 +195,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activemerchant
   capybara
   database_cleaner
   factory_girl_rails
