@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'Activemerchant'
 
 module Opay
   describe Providers::Paypal do
