@@ -1,3 +1,5 @@
+require 'activemerchant'
+
 module Opay
   module Providers
 
@@ -52,9 +54,9 @@ module Opay
       def self.geteway
         # ActiveMerchant::Billing::BogusGateway.new in test
         @geteway ||= begin
-          ActiveMerchant::Billing::Base.mode = :test if Opay.config.test_mode == true
+          ::ActiveMerchant::Billing::Base.mode = :test if Opay.config.test_mode == true
 
-          geteway = ActiveMerchant::Billing::PaypalExpressGateway.new({
+          geteway = ::ActiveMerchant::Billing::PaypalExpressGateway.new({
             login: Opay.config.paypal_login,
             password: Opay.config.paypal_password,
             signature: Opay.config.paypal_signature
