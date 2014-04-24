@@ -57,7 +57,7 @@ end
 create payment form
 
 ``` haml
-= opay_form_for(@model_name, provider: :payu) do |f|
+= opay_form_for @model_name, provider: :payu do |f|
   = f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Payment description'
   = f.submit 'pay with payu'
 ```
@@ -65,7 +65,7 @@ create payment form
 set up online url in payu.pl to: `/opay/payu/online`
 
 ``` haml
-= opay_form_for(@model_name, provider: :paypal) do |f|
+= opay_form_for @model_name, provider: :paypal do |f|
   = f.payment_info desc: 'Test payment', client_ip: '127.0.0.1'
   = f.paypal_submit_tag
 ```
