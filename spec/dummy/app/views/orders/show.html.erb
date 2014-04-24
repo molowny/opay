@@ -17,12 +17,12 @@
 
 
 
-<%= payu_form_for(@order) do |f| %>
+<%= opay_form_for @order, provider: :payu do |f| %>
   <%= f.payment_info first_name: 'Jan', last_name: 'Kowalski', email: 'kowalski@gmail.com', desc: 'Test payment', client_ip: '127.0.0.1' %>
   <%= f.submit :pay_with_payu %>
 <% end -%>
 
-<%= paypal_form_for(@order) do |f| %>
+<%= opay_form_for @order, provider: :paypal do |f| %>
   <%= f.paypal_payment_info desc: 'Test payment', client_ip: '127.0.0.1' %>
   <%= f.paypal_submit_tag %>
 <% end -%>

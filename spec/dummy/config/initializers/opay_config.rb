@@ -3,8 +3,8 @@
 Opay.configure do |config|
   config.providers = [:payu, :paypal]
 
-  # config.success_url = :success_payment_path
-  # config.cancel_url = :cancel_payment_path
+  config.success_url = :root_path
+  config.cancel_url = :root_path
 
   # payu configuration
   config.payu_pos_id = 123456
