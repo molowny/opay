@@ -16,9 +16,9 @@ module Opay
 
     def confirm
       if Providers::Paypal.process(params[:token], params[:PayerID], request.remote_ip)
-        redirect_to main_app.root_path, notice: I18n.t('opay.payment.success')
+        redirect_to main_app.send(Opay.config.success_url)
       else
-        redirect_to main_app.root_path, alert: I18n.t('opay.payment.error')
+        redirect_to main_app.send(Opay.config.cancel_url)
       end
     end
   end
