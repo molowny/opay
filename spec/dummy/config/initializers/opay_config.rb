@@ -16,6 +16,7 @@ Opay.configure do |config|
   config.paypal_login = 'ollownia-facilitator_api1.gmail.com'
   config.paypal_password = '1395743145'
   config.paypal_signature = 'AGUkzh-MeQY9FWOCQ5.UwnNAI5EgABkxUU7ynmHt9IbLYXd5FwKiwy6K'
+  config.paypal_currency = 'EUR'
 
   config.test_mode = true
   config.process_payments_localy = false if Rails.env.development?

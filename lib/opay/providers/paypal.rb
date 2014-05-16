@@ -13,6 +13,7 @@ module Opay
           return_url: confirm_url,
           cancel_return_url: cancel_url,
           order_id: session_id,
+          currency: Opay.config.paypal_currency,
           items: [{
             name: description,
             quantity: 1,
