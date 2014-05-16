@@ -17,6 +17,7 @@ module Opay
       config_accessor :paypal_login
       config_accessor :paypal_password
       config_accessor :paypal_signature
+      config_accessor :paypal_currency
 
       config_accessor :test_mode
       config_accessor :process_payments_localy
@@ -51,6 +52,7 @@ module Opay
           config.paypal_login = ENV['PAYPAL_LOGIN']
           config.paypal_password = ENV['PAYPAL_PASSWORD']
           config.paypal_signature = ENV['PAYPAL_SIGNATURE']
+          config.paypal_currency = 'EUR'
 
           config.test_mode = false
           config.process_payments_localy = true if Rails.env.development?
