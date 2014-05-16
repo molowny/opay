@@ -39,12 +39,15 @@ module Opay
         response = geteway.purchase(payment.amount, {
           ip: ip,
           token: token,
+          currency: Opay.config.paypal_currency,
           payer_id: payer_id
         })
 
         if response.success?
           payment.payable.finish
           return true
+        else
+          # Rails.logger.error(response.inspect)
         end
 
         false
