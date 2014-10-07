@@ -18,6 +18,7 @@ module Opay
         include Opay::Helpers::FormHelper
         include Opay::Helpers::PayuHelper
         include Opay::Helpers::PaypalHelper
+        include Opay::Helpers::TransferujHelper
       end
     end
 

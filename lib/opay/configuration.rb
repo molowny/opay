@@ -13,6 +13,10 @@ module Opay
       config_accessor :payu_key1
       config_accessor :payu_key2
 
+      # transferuj configuration
+      config_accessor :transferuj_user_id
+      config_accessor :transferuj_secure_code
+
       # paypal configuration
       config_accessor :paypal_login
       config_accessor :paypal_password
@@ -37,7 +41,7 @@ module Opay
       # Sets configuration back to default
       def reset_config
         configure do |config|
-          config.providers = [:payu, :paypal]
+          config.providers = [:payu, :transferuj, :paypal]
 
           config.success_url = :success_payment_url
           config.cancel_url = :cancel_payment_url
@@ -47,6 +51,10 @@ module Opay
           config.payu_pos_auth_key = ENV['PAYU_POS_AUTH_KEY']
           config.payu_key1 = ENV['PAYU_KEY1']
           config.payu_key2 = ENV['PAYU_KEY2']
+
+          # transferuj configuration
+          config.transferuj_user_id = ENV['TRANSFERUJ_USER_ID']
+          config.transferuj_secure_code = ENV['TRANSFERUJ_SECURE_CODE']
 
           # paypal configuration
           config.paypal_login = ENV['PAYPAL_LOGIN']

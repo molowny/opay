@@ -1,5 +1,5 @@
 Opay.configure do |config|
-  config.providers = [:payu, :paypal]
+  config.providers = [:payu, :transferuj, :paypal]
 
   config.test_mode = true
   # config.process_payments_localy = true if Rails.env.development?
@@ -12,6 +12,10 @@ Opay.configure do |config|
   config.payu_pos_auth_key = ENV['PAYU_POS_AUTH_KEY']
   config.payu_key1 = ENV['PAYU_KEY1']
   config.payu_key2 = ENV['PAYU_KEY2']
+
+  # transferuj configuration
+  config.transferuj_user_id = ENV['TRANSFERUJ_USER_ID']
+  config.transferuj_secure_code = ENV['TRANSFERUJ_SECURE_CODE']
 
   # paypal configuration
   config.paypal_login = ENV['PAYPAL_LOGIN']

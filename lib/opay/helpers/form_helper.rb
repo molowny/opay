@@ -12,6 +12,8 @@ module Opay
         case @payment_provider
         when :payu
           return payu_form_for(record, options, &block)
+        when :transferuj
+          return transferuj_form_for(record, options, &block)
         when :paypal
           return paypal_form_for(record, options, &block)
         end
@@ -24,6 +26,8 @@ module Opay
         case @options[:provider]
         when :payu
           payu_payment_info(options)
+        when :transferuj
+          transferuj_payment_info(options)
         when :paypal
           paypal_payment_info(options)
         end
