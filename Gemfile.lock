@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    opay (1.2.8)
+    opay (1.3.0)
       activemerchant
       rails (~> 4.0.0)
 
