@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+    <tr>
+        <th>id:</th>
+        <td><%= params[:id] %></td>
+    </tr>
+
+    <tr>
+        <th>session id:</th>
+        <td><%= params[:crc] %></td>
+    </tr>
+
+    <tr>
+        <th>amount:</th>
+        <td><%= number_to_currency(params[:kwota].to_i) %></td>
+    </tr>
+</table>
+
+<%= link_to 'Poprawna autoryzacja', opay_correct_authorization_path(session_id: params[:crc]), class: 'btn btn-success pull-left' %>
+<%= link_to 'Błędna autoryzacja', opay_wrong_authorization_path, class: 'btn btn-warning pull-right' %>
+
+

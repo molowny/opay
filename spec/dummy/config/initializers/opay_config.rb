@@ -23,5 +23,5 @@ Opay.configure do |config|
   config.paypal_currency = 'EUR'
 
   config.test_mode = true
-  config.process_payments_localy = false if Rails.env.development?
+  config.process_payments_localy = true if Rails.env.development?
 end
